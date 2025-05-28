@@ -23,7 +23,7 @@ export default function ChatContainer() {
     getMessages(selectedUser._id);
 
     subscribeToMessages();
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messageEndRef.current?.scrollIntoView();
 
     return () => {
       unsubscribeFromMessages();

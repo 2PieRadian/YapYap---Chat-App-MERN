@@ -36,14 +36,14 @@ export default function MessageInput() {
     if (!text.trim() && !imagePreview) return;
 
     try {
+      setText("");
+      setImagePreview(null);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+
       await sendMessage({
         text: text.trim(),
         image: imagePreview,
       });
-
-      setText("");
-      setImagePreview(null);
-      if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err) {
       console.log("Failed to send the message", err);
       toast.error("Failed to send the message");
