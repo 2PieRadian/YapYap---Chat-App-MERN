@@ -101,7 +101,7 @@ export default function MessageInput() {
             }`}
             onClick={() => fileInputRef.current?.click()}
           >
-            <Image size={28} />
+            <Image size={23} />
           </button>
         </div>
 
@@ -113,7 +113,7 @@ export default function MessageInput() {
           }`}
           disabled={!text?.trim() && !imagePreview}
         >
-          <Send size={28} />
+          <Send size={23} />
         </button>
       </form>
     </div>

@@ -32,7 +32,6 @@ export default function App() {
 
   return (
     <div data-theme={theme}>
-      <Navbar />
       <Routes>
         {/* Home */}
         <Route

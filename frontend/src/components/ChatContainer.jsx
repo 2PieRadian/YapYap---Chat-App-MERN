@@ -49,7 +49,7 @@ export default function ChatContainer() {
     );
 
   return (
-    <div className="flex-1 flex flex-col overflow-auto pb-[56px] relative">
+    <div className="flex-1 flex flex-col overflow-auto">
       <ChatHeader />
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -81,7 +81,9 @@ export default function ChatContainer() {
             </div>
 
             <div
-              className={`chat-bubble rounded-3xl flex flex-col ${
+              className={`max-w-[200px] ${
+                message.image ? "p-0" : "chat-bubble px-4 py-2"
+              } bg-base-300 rounded-[20px] flex flex-col ${
                 message.senderId === authUser._id ? "bg-primary" : ""
               }`}
             >
@@ -89,7 +91,7 @@ export default function ChatContainer() {
                 <img
                   src={message.image}
                   alt="Attachment"
-                  className="sm:max-w-[200px] rounded-md mb-2"
+                  className="sm:max-w-[200px] rounded-[20px]"
                 />
               )}
               {message.text && (
