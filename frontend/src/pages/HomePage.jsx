@@ -15,8 +15,8 @@ export default function HomePage() {
           selectedUser ? "h-[100vh]" : "h-[calc(100vh-64.8px)]"
         } bg-base-200`}
       >
-        <div className="flex items-center justify-center">
-          <div className="bg-base-100 rounded-lg shadow-xl w-full maxw-6xl h-[calc(100vh-64.8px)]">
+        <div className="h-full flex items-center justify-center">
+          <div className="h-full bg-base-100 rounded-lg shadow-xl w-full maxw-6xl">
             <div className="flex h-full rounded-lg overflow-hidden">
               <Sidebar />
 
