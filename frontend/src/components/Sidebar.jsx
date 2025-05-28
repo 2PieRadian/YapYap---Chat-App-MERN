@@ -16,6 +16,7 @@ export default function Sidebar() {
 
   const filteredUsers = users.filter((user) => onlineUsers.includes(user._id));
 
+  if (window.innerWidth <= 768) return;
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (

@@ -12,6 +12,7 @@ export default function MessageInput() {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
 
+    console.log(file.type);
     if (!file.type.startsWith("image/")) {
       toast.error("Please select an image file");
       return;
@@ -50,36 +51,40 @@ export default function MessageInput() {
   };
 
   return (
-    <div className="p-4 w-full">
+    <div className="w-full border-t-[1px] border-base-300">
       {imagePreview && (
         <div className="mb-3 flex items-center gap-2">
           <div className="relative">
             <img
               src={imagePreview}
               alt="Preview"
-              className="w-20 h-20 object-cover rounded-lg border border-zinc-700"
+              className="ml-2 mt-2 z-10 w-20 h-20 object-cover rounded-lg border border-zinc-700"
             />
             <button
               onClick={removeImage}
-              className="absolute -top-1.5 -right-1.5 w-5 h-5 rounded-full bg-base-300
+              className="absolute -top-[4px] -right-[11px] w-6 h-6 rounded-full bg-base-300
               flex items-center justify-center cursor-pointer"
               type="button"
             >
-              <X className="size-3" />
+              <X className="size-4" />
             </button>
           </div>
         </div>
       )}
 
-      <form onSubmit={handleSendMessage} className="flex items-center gap-2">
-        <div className="flex-1 flex gap-2">
+      <form onSubmit={handleSendMessage} className="flex h-14 items-center">
+        <div className="flex-1 flex h-full items-center">
+          {/* Typing Input */}
           <input
             type="text"
-            className="w-full input input-bordered rounded-lg input-sm sm:input-md"
+            autoComplete="off"
+            className="w-full pl-4 h-full flex text-[18px] focus:outline-none"
             placeholder="Type a message..."
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
+
+          {/* File Hidden Input */}
           <input
             type="file"
             accept="image/*"
@@ -88,22 +93,27 @@ export default function MessageInput() {
             onChange={handleImageChange}
           />
 
+          {/* File Input Button */}
           <button
             type="button"
-            className={`hidden sm:flex btn btn-circle
-                     ${imagePreview ? "text-emerald-500" : "text-zinc-400"}`}
+            className={`flex items-center px-3 h-full rounded-none cursor-pointer ${
+              imagePreview ? "text-primary" : "text-zinc-400"
+            }`}
             onClick={() => fileInputRef.current?.click()}
           >
-            <Image size={20} />
+            <Image size={28} />
           </button>
         </div>
 
+        {/* Send Button */}
         <button
           type="submit"
-          className="btn btn-sm btn-circle w-[50px] h-[40px] cursor-pointer bg-primary"
+          className={`h-full flex items-center px-2 pr-4 cursor-pointer rounded-none ${
+            text ? "text-primary" : "disabled text-zinc-400"
+          }`}
           disabled={!text?.trim() && !imagePreview}
         >
-          <Send size={20} color="white" />
+          <Send size={28} />
         </button>
       </form>
     </div>

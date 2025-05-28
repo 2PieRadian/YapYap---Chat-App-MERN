@@ -66,7 +66,7 @@ export default function ProfilePage() {
             <p className="text-sm text-zinc-400">
               {isUpdatingProfile
                 ? "Uploading..."
-                : "Click the camera icon to update your photo"}
+                : "Click the camera icon to update your photo (Upto 2MB)"}
             </p>
           </div>
 
