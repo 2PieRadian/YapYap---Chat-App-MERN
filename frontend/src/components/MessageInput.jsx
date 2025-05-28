@@ -7,7 +7,6 @@ export default function MessageInput() {
   const [text, setText] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const fileInputRef = useRef(null);
-  const textInputRef = useRef(null);
   const { sendMessage } = useChatStore();
 
   const handleImageChange = (e) => {
@@ -43,7 +42,6 @@ export default function MessageInput() {
       });
 
       setText("");
-      textInputRef.current.focus();
       setImagePreview(null);
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err) {
@@ -79,8 +77,8 @@ export default function MessageInput() {
           {/* Typing Input */}
           <input
             type="text"
-            ref={textInputRef}
             autoComplete="off"
+            autoFocus
             className="w-full pl-4 h-full flex text-[18px] focus:outline-none"
             placeholder="Type a message..."
             value={text}
@@ -111,8 +109,9 @@ export default function MessageInput() {
         {/* Send Button */}
         <button
           type="submit"
+          onMouseDown={(e) => e.preventDefault()}
           className={`h-full flex items-center px-2 pr-4 cursor-pointer rounded-none ${
-            text ? "text-primary" : "disabled text-zinc-400"
+            text.trim() || imagePreview ? "text-primary" : "text-zinc-400"
           }`}
           disabled={!text?.trim() && !imagePreview}
         >
