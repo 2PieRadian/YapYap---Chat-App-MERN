@@ -21,9 +21,9 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden lg:block h-full w-18 lg:w-72 border-r border-base-300 flex-col transition-all duration-200">
-      <div className="border-b border-base-300 w-full lg:block">
-        <div className="flex items-center justify-center gap-2 p-4">
-          <Users className="size-6 cursor-pointer" />
+      <div className="border-b border-base-300 w-full h-[64.8px] flex items-center justify-center">
+        <div className="flex items-center justify-center gap-2 h-[56px]">
+          <Users className="size-6 cursor-pointer text-primary" />
           <span className="font-medium hidden lg:block">Online users</span>
         </div>
       </div>

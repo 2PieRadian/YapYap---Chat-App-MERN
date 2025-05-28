@@ -11,7 +11,7 @@ export default function UsersPage() {
 
   return (
     <div className="w-screen flex flex-col rounded-none">
-      <div className="p-4 font-bold text-[20px] border-b-[1px] border-base-300">
+      <div className="box-border flex items-center pl-4 h-[64.8px] font-bold text-[20px] border-b-[1px] border-base-300">
         All Users
       </div>
       {users?.map((user) => (

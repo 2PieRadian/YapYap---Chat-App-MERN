@@ -49,7 +49,7 @@ export default function ChatContainer() {
     );
 
   return (
-    <div className="flex-1 flex flex-col overflow-auto pb-[56px]">
+    <div className="flex-1 flex flex-col overflow-auto pb-[56px] relative">
       <ChatHeader />
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
