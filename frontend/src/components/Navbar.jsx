@@ -41,11 +41,11 @@ export default function Navbar() {
                 </Link>
 
                 <button
-                  className="flex gap-2 items-center cursor-pointer"
+                  className="btn btn-sm bg-[#e34646] hover:bg-[#de7e7e] flex gap-2 items-center cursor-pointer"
                   onClick={logout}
                 >
-                  <LogOut className="size-5" />
-                  <span className="hidden sm:inline">Logout</span>
+                  <LogOut className="size-5 text-white" />
+                  <span className="hidden sm:inline text-white">Logout</span>
                 </button>
               </>
             )}

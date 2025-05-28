@@ -15,6 +15,7 @@ export default function ChatHeader() {
             <div className="size-10 rounded-full relative">
               <img
                 src={selectedUser.profilePic || "/avatar.png"}
+                className="bg-base-300"
                 alt={selectedUser.fullName}
               />
             </div>

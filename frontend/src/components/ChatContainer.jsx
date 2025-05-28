@@ -60,14 +60,15 @@ export default function ChatContainer() {
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
           >
-            <div className=" chat-image avatar">
-              <div className="size-10 rounded-full border border-[#979da3] bg-[#d0d4d8]">
+            <div className="chat-image avatar">
+              <div className="size-10 rounded-full border-2  border-base-300">
                 <img
                   src={
                     message.senderId === authUser._id
                       ? authUser.profilePic || "/avatar.png"
                       : selectedUser.profilePic || "/avatar.png"
                   }
+                  className="bg-base-300"
                   alt="Profile Pic"
                 />
               </div>
