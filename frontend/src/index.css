@@ -2,3 +2,12 @@
 @plugin "daisyui" {
   themes: all;
 }
+
+@theme {
+  --font-display: "SamsungOne";
+}
+
+@font-face {
+  font-family: SamsungOne;
+  src: url("/fonts/SamsungOne-400.ttf") format("truetype");
+}

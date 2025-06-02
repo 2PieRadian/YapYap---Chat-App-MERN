@@ -45,8 +45,8 @@ export const sendMessage = async (req, res) => {
 
     let imageUrl;
 
+    // Upload the base64 string to the cloudinary
     if (image) {
-      // Upload the base64 string to the cloudinary
       const uploadResponse = await cloudinary.uploader.upload(image);
       imageUrl = uploadResponse.secure_url;
     }
@@ -59,10 +59,6 @@ export const sendMessage = async (req, res) => {
     });
 
     await newMessage.save();
-
-    const receiverSocketID = getReceiverSocketId(receiverId);
-    if (receiverSocketID)
-      io.to(receiverSocketID).emit("newMessage", newMessage);
 
     res.status(201).json(newMessage);
   } catch (err) {

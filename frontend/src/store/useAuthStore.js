@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
+import { useChatStore } from "./useChatStore";
 
 const BASE_URL =
   import.meta.env.MODE === "development" ? "http://localhost:3000" : "/";
@@ -32,6 +33,7 @@ export const useAuthStore = create((set, get) => ({
   },
 
   signup: async (data) => {
+    set({ isSigningUp: true });
     try {
       const res = await axiosInstance.post("/auth/signup", data);
       set({ authUser: res.data });
@@ -41,7 +43,7 @@ export const useAuthStore = create((set, get) => ({
     } catch (err) {
       toast.error(err.response.data.message);
     } finally {
-      set({ isCheckingAuth: false });
+      set({ isSigningUp: false });
     }
   },
 
@@ -90,6 +92,7 @@ export const useAuthStore = create((set, get) => ({
 
   connectSocket: () => {
     const { authUser } = get();
+    // If there is no authenticated user OR there is already a socket connection, just return
     if (!authUser || get().socket?.connected) return;
 
     const socket = io(BASE_URL, {
@@ -97,15 +100,24 @@ export const useAuthStore = create((set, get) => ({
         userId: authUser._id,
       },
     });
+
+    // Connect and save the socket instance
     socket.connect();
     set({ socket: socket });
 
+    socket.on("userSignedUp", () => {
+      useChatStore.getState().getUsers();
+    });
+
+    // Listen for online user list updates from server
     socket.on("getOnlineUsers", (userIDs) => {
       set({ onlineUsers: userIDs });
     });
   },
 
   disconnectSocket: () => {
-    if (get().socket?.connected) get().socket.disconnect();
+    if (get().socket?.connected) {
+      get().socket.disconnect();
+    }
   },
 }));

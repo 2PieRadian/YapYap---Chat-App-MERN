@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import { createToken } from "../lib/utils.js";
 import User from "../models/user.model.js";
 import cloudinary from "../lib/cloudinary.js";
+import { io } from "../lib/socket.js";
 
 function handleErrors(err) {
   let errors = {};
@@ -35,6 +36,8 @@ export const signup_post = async (req, res) => {
 
     // After the user has been created send the ID created by MongoDB to create the JWT Token
     createToken(user._id, res);
+
+    io.emit("userSignedUp");
 
     res.status(201).json(user);
   } catch (err) {

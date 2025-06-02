@@ -1,6 +1,6 @@
 import { Server } from "socket.io";
 import express from "express";
-import http, { get } from "http";
+import http from "http";
 
 const app = express();
 const server = http.createServer(app);
@@ -15,9 +15,11 @@ export const getReceiverSocketId = (userId) => {
   return onlineUsersMap[userId];
 };
 
-// To store online users
-const onlineUsersMap = {}; // <userID : socketID>
+// Map to store online users
+// <userID : socketID>
+const onlineUsersMap = {};
 
+// This will run when a user connects
 io.on("connection", (socket) => {
   // Add the connected user to online users map
   const userId = socket.handshake.query.userId;
@@ -25,6 +27,14 @@ io.on("connection", (socket) => {
 
   io.emit("getOnlineUsers", Object.keys(onlineUsersMap));
 
+  socket.on("newMessage", (messageData) => {
+    const receiverSocketID = getReceiverSocketId(messageData.receiverId);
+    if (receiverSocketID) {
+      io.to(receiverSocketID).emit("newMessage", messageData);
+    }
+  });
+
+  // When a user disconnects, remove them from the onlineUsers Map
   socket.on("disconnect", () => {
     delete onlineUsersMap[userId];
     io.emit("getOnlineUsers", Object.keys(onlineUsersMap));

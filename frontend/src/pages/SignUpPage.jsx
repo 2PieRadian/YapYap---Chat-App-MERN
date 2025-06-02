@@ -1,8 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-
-import { useAuthStore } from "../store/useAuthStore";
 import {
   Eye,
   EyeOff,
@@ -12,6 +10,8 @@ import {
   MessageSquare,
   User,
 } from "lucide-react";
+
+import { useAuthStore } from "../store/useAuthStore";
 import AuthImagePattern from "../components/AuthImagePattern";
 import Navbar from "../components/Navbar";
 
@@ -41,12 +41,12 @@ export default function SignUpPage() {
     return true;
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
     const success = validateForm();
     if (success === true) {
-      signup(formData);
+      await signup(formData);
     }
   }
 

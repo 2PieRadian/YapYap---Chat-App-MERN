@@ -17,13 +17,13 @@ export default function ChatContainer() {
   } = useChatStore();
 
   const { authUser } = useAuthStore();
-  const messageEndRef = useRef(null);
+  const messageContainerRef = useRef(null);
 
   useEffect(() => {
+    // Get the messages of the selected user
     getMessages(selectedUser._id);
 
     subscribeToMessages();
-    messageEndRef.current?.scrollIntoView();
 
     return () => {
       unsubscribeFromMessages();
@@ -35,8 +35,12 @@ export default function ChatContainer() {
     unsubscribeFromMessages,
   ]);
 
+  // Scroll down to the latest message
   useEffect(() => {
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messageContainerRef.current.scrollTo({
+      top: messageContainerRef.current.scrollHeight,
+      behavior: "smooth",
+    });
   }, [messages]);
 
   if (isMessagesLoading)
@@ -52,9 +56,13 @@ export default function ChatContainer() {
     <div className="flex-1 flex flex-col overflow-auto">
       <ChatHeader />
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div
+        className="flex-1 overflow-y-auto p-4 space-y-4 scroll-auto"
+        ref={messageContainerRef}
+      >
         {messages.map((message) => (
           <div
+            id={message._id}
             key={message._id}
             className={`chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
@@ -106,8 +114,6 @@ export default function ChatContainer() {
             </div>
           </div>
         ))}
-
-        <div ref={messageEndRef}></div>
       </div>
 
       <MessageInput />

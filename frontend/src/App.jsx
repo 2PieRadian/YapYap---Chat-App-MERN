@@ -31,7 +31,7 @@ export default function App() {
   }
 
   return (
-    <div data-theme={theme}>
+    <div data-theme={theme} className="font-display">
       <Routes>
         {/* Home */}
         <Route

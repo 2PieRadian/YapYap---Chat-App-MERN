@@ -51,8 +51,8 @@ export default function Sidebar() {
               />
               {onlineUsers.includes(user._id) && (
                 <span
-                  className="absolute bottom-0 right-0 size-3 bg-green-500 
-                  rounded-full ring-2 ring-zinc-900"
+                  className="absolute bottom-0 right-0 size-3 bg-green-300 
+                  rounded-full ring-1 ring-green-700"
                 />
               )}
             </div>
@@ -60,9 +60,7 @@ export default function Sidebar() {
             {/* User info - only visible on larger screens */}
             <div className="text-left min-w-0">
               <div className="font-medium truncate">{user.fullName}</div>
-              <div className="text-sm text-zinc-400">
-                {onlineUsers.includes(user._id) ? "Online" : "Offline"}
-              </div>
+              <div className="text-sm text-green-500 ">Online</div>
             </div>
           </button>
         ))}
