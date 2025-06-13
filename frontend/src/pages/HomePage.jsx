@@ -11,6 +11,7 @@ export default function HomePage() {
     <div className="relative bg-base-">
       {!selectedUser && <Navbar />}
       <div
+        // Height according to the selected user
         className={`${
           selectedUser ? "h-[100vh]" : "h-[calc(100vh-64.8px)]"
         } bg-base-200`}

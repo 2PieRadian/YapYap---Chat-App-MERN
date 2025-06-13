@@ -29,7 +29,9 @@ export default function ChatHeader() {
                 onlineUsers.includes(selectedUser._id) ? "text-green-500" : ""
               }`}
             >
-              {onlineUsers.includes(selectedUser._id) ? "Online" : "Offline"}
+              {onlineUsers.includes(selectedUser._id)
+                ? "Online"
+                : "last seen at " + selectedUser.lastOnline}
             </p>
           </div>
         </div>

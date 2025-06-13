@@ -11,6 +11,7 @@ export const useChatStore = create((set, get) => ({
   isUsersLoading: false,
   isMessagesLoading: false,
   onlineUsers: [],
+  typing: false,
 
   // Get all the registered users from the database
   getUsers: async () => {
@@ -93,9 +94,34 @@ export const useChatStore = create((set, get) => ({
       set({ messages: [...get().messages, newMessage] });
     });
 
-    // XX ---- This is not required ---- XX
-    // Backend sends this to both the "sender" and "receiver" when the "optimistic message" is saved succesfully in the DB
-    // socket.on("messagesUpdated", (newMessages) => {});
+    // Listen to an event called "update-last-seen" on this socket
+    socket.on("update-last-seen", ({ userId, lastOnline }) => {
+      const { selectedUser, users } = get();
+      if (selectedUser && selectedUser._id == userId) {
+        set({ selectedUser: { ...selectedUser, lastOnline } });
+      }
+
+      const updatedUsers = users.map((user) => {
+        if (user._id == userId) {
+          return {
+            ...user,
+            lastOnline,
+          };
+        } else return user;
+      });
+
+      set({ users: updatedUsers });
+    });
+
+    socket.on("typing", () => {
+      console.log("typing");
+      set({ typing: true });
+    });
+
+    socket.on("not-typing", () => {
+      console.log("not-typing");
+      set({ typing: false });
+    });
   },
 
   // Unsubscribe from the real-time "newMessage" socket event

@@ -39,7 +39,7 @@ export default function ChatContainer() {
   useEffect(() => {
     messageContainerRef.current.scrollTo({
       top: messageContainerRef.current.scrollHeight,
-      behavior: "smooth",
+      // behavior: "smooth",
     });
   }, [messages]);
 
@@ -64,7 +64,7 @@ export default function ChatContainer() {
           <div
             id={message._id}
             key={message._id}
-            className={`chat ${
+            className={`observe-div chat ${
               message.senderId === authUser._id ? "chat-end" : "chat-start"
             }`}
           >

@@ -20,7 +20,7 @@ export default function Sidebar() {
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="hidden lg:flex h-full w-64 border-r border-base-300 flex-col transition-all duration-200">
+    <aside className="hidden lg:flex h-full w-72 border-r border-base-300 flex-col transition-all duration-200">
       <div className="border-b border-base-300 w-full h-[64.8px] flex items-center justify-center">
         <div className="flex items-center justify-center gap-2 h-[56px]">
           <Users className="size-6 cursor-pointer text-primary" />
@@ -43,11 +43,11 @@ export default function Sidebar() {
               }
             `}
           >
-            <div className="relative mx-auto lg:mx-0 bg-[#d0d4d8] rounded-full">
+            <div className="relative mx-auto lg:mx-0 bg-[#d0d4d8] rounded-full shrink-0">
               <img
                 src={user.profilePic || "/avatar.png"}
                 alt={user.name}
-                className="size-12 object-cover rounded-full"
+                className="w-[48px] h-[48px] object-cover rounded-full"
               />
               {onlineUsers.includes(user._id) && (
                 <span
