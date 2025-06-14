@@ -10,8 +10,8 @@ export const useChatStore = create((set, get) => ({
   selectedUser: null,
   isUsersLoading: false,
   isMessagesLoading: false,
-  onlineUsers: [],
   typing: false,
+  viewSelectedUserProfile: false,
 
   // Get all the registered users from the database
   getUsers: async () => {
@@ -133,5 +133,9 @@ export const useChatStore = create((set, get) => ({
   // Set the "selectedUser" state to the "user" object you click on
   setSelectedUser: (userId) => {
     set({ selectedUser: userId });
+  },
+
+  setViewSelectedUserProfile: (value) => {
+    set({ viewSelectedUserProfile: value });
   },
 }));

@@ -11,8 +11,11 @@ export default function UsersPage() {
 
   return (
     <div className="w-full">
-      <div className="box-border flex items-center pl-4 h-[64.8px] font-bold text-[20px] border-b-[1px] border-base-300">
-        All Users
+      <div className="box-border flex justify-between items-center p-4 h-[64.8px] f border-b-[1px] border-base-300">
+        <h1 className="font-bold text-[20px]">All Users</h1>
+        <button className="bg-primary text-amber-50 py-[6px] px-4 rounded-4xl cursor-pointer hover:scale-105 transition">
+          Create Group
+        </button>
       </div>
 
       <div className="overflow-scroll h-full pb-20">

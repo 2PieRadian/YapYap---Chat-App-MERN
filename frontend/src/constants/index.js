@@ -1,7 +1,6 @@
 export const THEMES = [
   "light",
   "dark",
-  "sunset",
   "lofi",
   "cupcake",
   "nord",
@@ -9,11 +8,7 @@ export const THEMES = [
   "forest",
   "winter",
   "business",
-  "dim",
   "halloween",
-  "valentine",
   "dracula",
   "bumblebee",
-  "acid",
-  "coffee",
 ];

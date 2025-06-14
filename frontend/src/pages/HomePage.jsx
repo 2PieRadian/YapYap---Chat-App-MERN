@@ -3,12 +3,14 @@ import Sidebar from "../components/Sidebar";
 import ChatContainer from "../components/ChatContainer";
 import UsersPage from "../components/UsersPage";
 import Navbar from "../components/Navbar";
+import UserProfile from "../components/UserProfile";
 
 export default function HomePage() {
   const { selectedUser } = useChatStore();
+  const { viewSelectedUserProfile } = useChatStore();
 
   return (
-    <div className="relative bg-base-">
+    <div className="relative">
       {!selectedUser && <Navbar />}
       <div
         // Height according to the selected user
@@ -17,11 +19,17 @@ export default function HomePage() {
         } bg-base-200`}
       >
         <div className="h-full flex items-center justify-center">
-          <div className="h-full bg-base-100 rounded-lg shadow-xl w-full maxw-6xl">
+          <div className="h-full bg-base-100 rounded-lg shadow-xl w-full">
             <div className="flex h-full rounded-lg overflow-hidden">
               <Sidebar />
 
-              {!selectedUser ? <UsersPage /> : <ChatContainer />}
+              {!selectedUser ? (
+                <UsersPage />
+              ) : viewSelectedUserProfile ? (
+                <UserProfile />
+              ) : (
+                <ChatContainer />
+              )}
             </div>
           </div>
         </div>

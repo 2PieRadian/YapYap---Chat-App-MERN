@@ -20,7 +20,7 @@ export default function Sidebar() {
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="hidden lg:flex h-full w-72 border-r border-base-300 flex-col transition-all duration-200">
+    <aside className="hidden lg:flex h-full min-w-72 border-r border-base-300 flex-col transition-all duration-200">
       <div className="border-b border-base-300 w-full h-[64.8px] flex items-center justify-center">
         <div className="flex items-center justify-center gap-2 h-[56px]">
           <Users className="size-6 cursor-pointer text-primary" />
