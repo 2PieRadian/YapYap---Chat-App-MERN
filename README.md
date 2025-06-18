@@ -8,6 +8,7 @@ A real-time chat application built with the **MERN stack**, featuring **Socket.I
 - 💬 **Real-time Messaging** – Instant communication with Socket.IO
 - ✍️ **Typing Indicator** – See when someone is typing
 - 🟢 **Online/Offline Status** – Real-time user presence updates
+- 🕓 **Last Seen** – View the last active time of offline users
 - 🖼️ **Image Messaging** – Send and view image messages
 - 👤 **User Profiles** – View others' profiles and update your own
 - 🖌️ **Theme Customization** – Choose from 12 beautiful themes via DaisyUI
