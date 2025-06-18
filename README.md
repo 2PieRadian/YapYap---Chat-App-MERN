@@ -1,4 +1,4 @@
-# 💬 YMERN Chat App
+# 💬 MERN Chat App
 
 A real-time chat application built with the **MERN stack**, featuring **Socket.IO** for live communication, **JWT authentication**, and a sleek UI powered by **TailwindCSS** and **DaisyUI**. Users can chat, share images, customize themes, and more.
 
